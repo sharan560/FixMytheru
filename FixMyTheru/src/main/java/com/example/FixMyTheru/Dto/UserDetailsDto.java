@@ -12,10 +12,11 @@ import java.util.List;
 @NoArgsConstructor
 @Component
 public class UserDetailsDto {
-
+    private Integer id;
     private String name;
     private String email;
     private byte[] image;
+    private String address;
 
 
 }

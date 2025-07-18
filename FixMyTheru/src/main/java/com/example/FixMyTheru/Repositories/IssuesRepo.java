@@ -1,0 +1,19 @@
+package com.example.FixMyTheru.Repositories;
+
+import com.example.FixMyTheru.Models.Issues;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface IssuesRepo extends JpaRepository<Issues, Integer> {
+
+    @Query("SELECT i FROM Issues i WHERE i.registerDetails.username = :username")
+    List<Issues> findAllByUserName(@Param("username") String username);
+
+
+
+}

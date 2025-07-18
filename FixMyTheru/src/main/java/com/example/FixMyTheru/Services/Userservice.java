@@ -23,9 +23,11 @@ public class Userservice {
         List<RegisterDetails> users=registerDetailsRepo.findAll();
         return users.stream()
                 .map(user -> new UserDetailsDto(
+                        user.getId(),
                         user.getName(),
                         user.getEmail(),
-                        user.getProfileimage()
+                        user.getProfileimage(),
+                        user.getAddress()
                 ))
                 .collect(Collectors.toList());
 
@@ -33,8 +35,8 @@ public class Userservice {
 
     public UserDetailsDto getuserByid(int id) {
 
-        RegisterDetails user= registerDetailsRepo.findById(id).get();
-        return new UserDetailsDto(user.getName(),user.getEmail(),user.getProfileimage());
+        RegisterDetails user= registerDetailsRepo.findById(id).orElseThrow();
+        return new UserDetailsDto(user.getId(), user.getName(),user.getEmail(),user.getProfileimage(),user.getAddress());
     }
 
 }
