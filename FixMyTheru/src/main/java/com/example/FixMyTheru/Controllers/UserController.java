@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private Userservice userservice;
 
-    @GetMapping("")
+    @GetMapping("/getall")
     public List<UserDetailsDto> getallUsers() {
         return userservice.getallusers();
     }
@@ -28,4 +28,10 @@ public class UserController {
     public UserDetailsDto getUser(@PathVariable int id) {
         return userservice.getuserByid(id);
     }
+
+    @GetMapping("/get/{role}")
+    public List<UserDetailsDto> getuserByrole(@PathVariable String role) {
+        return userservice.getUserByRole(role);
+    }
+
 }

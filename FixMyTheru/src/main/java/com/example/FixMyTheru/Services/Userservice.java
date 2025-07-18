@@ -39,4 +39,16 @@ public class Userservice {
         return new UserDetailsDto(user.getId(), user.getName(),user.getEmail(),user.getProfileimage(),user.getAddress());
     }
 
+    public List<UserDetailsDto> getUserByRole(String role) {
+            List<RegisterDetails> reg=registerDetailsRepo.findByRole(role);
+
+            return reg.stream()
+                    .map(user-> new UserDetailsDto(
+                            user.getId(),
+                            user.getName(),
+                            user.getEmail(),
+                            user.getProfileimage(),
+                            user.getAddress()
+                    )).collect(Collectors.toList());
+    }
 }
