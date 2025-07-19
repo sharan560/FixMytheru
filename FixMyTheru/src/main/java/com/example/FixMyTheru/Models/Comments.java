@@ -7,23 +7,22 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class Comments {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int CommnetId;
+    private int commentId;
 
-    private String Commnentdescription;
+    private String commentDescription;
 
-    private Date Commentdate;
+    private LocalDateTime commentDate;
 
-    private LocalDateTime Commenttime;
+    private LocalDateTime commentTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -31,11 +30,7 @@ public class Comments {
     private RegisterDetails registerDetails;
 
     @ManyToOne
-    @JoinColumn(name="issue_id")
+    @JoinColumn(name = "issue_id")
     @ToString.Exclude
     private Issues issues;
-
-
-
-
 }

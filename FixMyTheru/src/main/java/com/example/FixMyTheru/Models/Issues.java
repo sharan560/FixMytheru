@@ -21,7 +21,7 @@ public class Issues {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Issueid;
+    private int issueid;
 
     @Column(nullable = false)
     private String IssueName;
@@ -31,7 +31,7 @@ public class Issues {
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date IssueDate;
+    private LocalDateTime IssueDate;
 
     @Column(nullable = false)
     @JsonFormat(shape=JsonFormat.Shape.STRING ,pattern = "HH:mm:ss")

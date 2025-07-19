@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,9 +21,9 @@ public class IssuesDto {
     private String issuename;
     private String issuedescription;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date issuedate;
+    private LocalDateTime issuedate;
     @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "HH:mm:ss")
-    private Date issuetime;
+    private LocalDateTime issuetime;
     private String issueType;
     private String issuestatus;
     private List<Images> issueimage;
