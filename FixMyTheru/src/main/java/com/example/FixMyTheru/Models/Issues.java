@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class Issues {
 
     @Column(nullable = false)
     @JsonFormat(shape=JsonFormat.Shape.STRING ,pattern = "HH:mm:ss")
-    private Date IssueTime;
+    private LocalDateTime IssueTime;
 
     @Column(nullable = false)
     private String IssueLocation;
@@ -44,9 +46,11 @@ public class Issues {
     private String IssueType;
 
     @OneToMany(mappedBy = "issues")
+    @ToString.Exclude
     private List<Images> IssueImages;
 
     @OneToMany(mappedBy = "issues")
+    @ToString.Exclude
     private List<Comments> IssueCommnets;
 
     @ManyToOne
@@ -55,6 +59,7 @@ public class Issues {
     private RegisterDetails registerDetails;
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name="maintainence_id")
     private RegisterDetails maintainenceDetails;
 

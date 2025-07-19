@@ -6,27 +6,32 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Images {
+public class Workupdate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int imageid;
+    private int updateId;
 
-    @Lob
-    private byte[] image;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="issue_id")
-    @ToString.Exclude
     private Issues issues;
+    private String Workdescription;
 
-    @ManyToOne
-    @JoinColumn(name = "update_id")
+    @OneToMany(mappedBy = "updates")
     @ToString.Exclude
-    private Workupdate updates;
+    private List<Images> images;
+
+    @OneToOne
+    @JoinColumn(name="maintenece_id")
+    @ToString.Exclude
+    private RegisterDetails maintaience;
+
+
 
 }

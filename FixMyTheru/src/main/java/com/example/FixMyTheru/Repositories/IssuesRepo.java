@@ -11,9 +11,8 @@ import java.util.List;
 @Repository
 public interface IssuesRepo extends JpaRepository<Issues, Integer> {
 
-    @Query("SELECT i FROM Issues i WHERE i.registerDetails.username = :username")
-    List<Issues> findAllByUserName(@Param("username") String username);
 
 
 
+    List<Issues> findByRegisterDetails_Id(int id);
 }

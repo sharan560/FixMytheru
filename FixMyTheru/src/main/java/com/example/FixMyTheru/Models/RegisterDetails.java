@@ -41,17 +41,21 @@ public class RegisterDetails {
     @Column(nullable = false)
     private String address;
 
-    @Column (nullable = false)
+
     @OneToMany(mappedBy = "registerDetails")
+    @ToString.Exclude
     private List<Comments> comments;
 
-    @Column (nullable = false)
+
     @OneToMany(mappedBy = "registerDetails")
+    @ToString.Exclude
     private List<Issues>issues;
 
-    @Column(nullable = false)
     @OneToMany(mappedBy = "maintainenceDetails")
     @ToString.Exclude
     private List<Issues> maintaience;
 
+    @OneToOne(mappedBy = "maintaience")
+    @ToString.Exclude
+    private Workupdate maintainence;
 }

@@ -31,9 +31,9 @@ public class IssueController {
     }
 
 /// Get all the issues that are raised by an user
-    @GetMapping("/getIssue/{name}")
-    public List<IssuesDto> fetchIssuesByUserName(@PathVariable String name){
-        return issuseService.fetchIssuesByUserName(name);
+    @GetMapping("/getIssue/{id}")
+    public List<IssuesDto> fetchIssuesByUserid(@PathVariable int id){
+        return issuseService.fetchIssuesByUserid(id);
 
     }
 

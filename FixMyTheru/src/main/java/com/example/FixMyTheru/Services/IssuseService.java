@@ -1,6 +1,7 @@
 package com.example.FixMyTheru.Services;
 
 import com.example.FixMyTheru.Dto.IssuesDto;
+import com.example.FixMyTheru.Enum.IssueStatus;
 import com.example.FixMyTheru.Models.Issues;
 import com.example.FixMyTheru.Models.RegisterDetails;
 import com.example.FixMyTheru.Repositories.IssuesRepo;
@@ -21,12 +22,15 @@ public class IssuseService {
     private RegisterDetailsRepo registerDetailsRepo;
 
     public boolean addissue(Issues issues) {
+        if(issues.getIssueStatus()==null){
+            issues.setIssueStatus(String.valueOf(IssueStatus.NOT_STARTED));
+        }
         issuesRepo.save(issues);
         return true;
     }
 
-    public List<IssuesDto> fetchIssuesByUserName(String name) {
-        List<Issues> issues = issuesRepo.findAllByUserName(name);
+    public List<IssuesDto> fetchIssuesByUserid(int id) {
+        List<Issues> issues = issuesRepo.findByRegisterDetails_Id(id);
         System.out.println(issues);
         return issues.stream()
                 .map(issue -> new IssuesDto(
