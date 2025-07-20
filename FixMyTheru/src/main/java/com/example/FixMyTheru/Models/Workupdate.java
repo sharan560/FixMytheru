@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -18,10 +19,15 @@ public class Workupdate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int updateId;
 
+    private String workDescription;
+
+    private LocalDateTime workDate;
+
+    private LocalDateTime workTime;
+
     @OneToOne
     @JoinColumn(name="issue_id")
     private Issues issues;
-    private String Workdescription;
 
     @OneToMany(mappedBy = "updates")
     @ToString.Exclude
