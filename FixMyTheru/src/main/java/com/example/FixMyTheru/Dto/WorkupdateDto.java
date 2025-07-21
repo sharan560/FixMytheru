@@ -17,7 +17,8 @@ public class WorkupdateDto {
     private String issueName;
     private String workDescription;
     private LocalDateTime workDate;
-    private List<Images> image ;
+//    private List<String> images ;
+    private List<Images> images;
     private  String maintence;
 
 }

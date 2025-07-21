@@ -7,6 +7,7 @@ import com.example.FixMyTheru.Repositories.RegisterDetailsRepo;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +16,8 @@ public class AuthServices {
     @Autowired
     private RegisterDetailsRepo registerDetailsRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public boolean registerUser(RegisterDetails userDetails) {
 
@@ -22,7 +25,7 @@ public class AuthServices {
         {
             userDetails.setRole(String.valueOf(Roles.ROLE_USER));
         }
-
+        userDetails.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         registerDetailsRepo.save(userDetails);
         return true;
 

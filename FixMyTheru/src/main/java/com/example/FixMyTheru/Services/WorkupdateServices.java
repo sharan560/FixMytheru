@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,12 +54,15 @@ public class WorkupdateServices {
     }
 
     @Transactional
-    public List<byte[]> getimage(int id) {
+    public List<String> getimage(int id) {
         List<Images>img= imagesRepo.findImagesByUpdates_UpdateId( id);
-        List<byte[]>img1=new ArrayList<>();
+        List<byte[]>images=new ArrayList<>();
         for(Images i:img){
-            img1.add(i.getImage());
+            images.add(i.getImage());
         }
-        return img1;
+        List<String> base64Images = images.stream()
+                .map(image -> Base64.getEncoder().encodeToString(image))
+                .toList();
+        return base64Images;
     }
 }
