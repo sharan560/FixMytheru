@@ -4,6 +4,7 @@ import com.example.FixMyTheru.Dto.CommentsDto;
 import com.example.FixMyTheru.Models.Comments;
 import com.example.FixMyTheru.Services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PostMapping("/addcomment")
     public String addComment(@RequestBody Comments comment){
         System.out.println(comment);
@@ -24,6 +26,7 @@ public class CommentController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','USER','MAINTANENCE')")
     @GetMapping("/get/{issueid}")
     public List<CommentsDto> getAllCommnets(@PathVariable int issueid)
     {
