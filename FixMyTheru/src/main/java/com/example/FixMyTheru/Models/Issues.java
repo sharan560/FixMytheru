@@ -40,7 +40,9 @@ public class Issues {
     @Column(nullable = false)
     private String IssueLocation;
 
-    private String IssueStatus;
+    @Column(name = "IssueStatus")
+    private String issueStatus;
+
 
     @Column(nullable = false)
     private String IssueType;

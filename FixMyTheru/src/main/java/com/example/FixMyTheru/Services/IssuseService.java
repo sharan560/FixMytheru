@@ -40,8 +40,7 @@ public class IssuseService {
                         issue.getIssueDate(),
                         issue.getIssueTime(),
                         issue.getIssueType(),
-                        issue.getIssueStatus(),
-                        issue.getIssueImages()
+                        issue.getIssueStatus()
                 ))
                 .collect(Collectors.toList());
     }
@@ -60,17 +59,66 @@ public class IssuseService {
                         issues1.getIssueTime(),
                         issues1.getIssueDate(),
                         issues1.getIssueType(),
-                        issues1.getIssueStatus(),
-                        issues1.getIssueImages()
+                        issues1.getIssueStatus()
                 )).collect(Collectors.toList());
 
     }
 
     public boolean assignMaintanenceEmployee(int issueid, int maintanceid) {
-            Issues issues=issuesRepo.findById(issueid).orElseThrow();
-            RegisterDetails maintanence=registerDetailsRepo.findById(issueid).orElseThrow();
-            issues.setMaintainenceDetails(maintanence);
-            issuesRepo.save(issues);
-            return true;
+        // Find the issue by ID
+        System.out.println(issueid);
+        System.out.println(maintanceid);
+        Issues issue = issuesRepo.findById(issueid).orElse(null);
+        if (issue == null) {
+            return false; // issue not found
+        }
+
+        RegisterDetails employee = registerDetailsRepo.findById(maintanceid).orElse(null);
+        if (employee == null || !"MAINTANENCE".equalsIgnoreCase(employee.getRole())) {
+            System.out.println("not");
+            return false; // employee not found or not a maintenance staff
+        }
+        issue.setIssueStatus(IssueStatus.IN_PROGRESS.toString());
+        System.out.println("yes");
+        issue.setMaintainenceDetails(employee);
+        issuesRepo.save(issue);
+        return true;
     }
+
+
+
+
+    public List<IssuesDto> getissuesBymaintanceid(int id) {
+        List<Issues>issues= issuesRepo.findByMaintainenceDetails_Id(id);
+
+
+        return issues.stream()
+                .map(issues1 ->  new IssuesDto(
+                        issues1.getIssueid(),
+                        issues1.getIssueName(),
+                        issues1.getIssueDescription(),
+                        issues1.getIssueTime(),
+                        issues1.getIssueDate(),
+                        issues1.getIssueType(),
+                        issues1.getIssueStatus()
+                )).collect(Collectors.toList());
+
+    }
+
+    public List<IssuesDto> getIssueByStatus(String status) {
+        List<Issues> issues = issuesRepo.findByIssueStatus(status);
+
+        return issues.stream()
+                .map(issue -> new IssuesDto(
+                        issue.getIssueid(),
+                        issue.getIssueName(),
+                        issue.getIssueDescription(),
+                        issue.getIssueTime(),
+                        issue.getIssueDate(),
+                        issue.getIssueType(),
+                        issue.getIssueStatus()
+                ))
+                .collect(Collectors.toList());
+    }
+
 }

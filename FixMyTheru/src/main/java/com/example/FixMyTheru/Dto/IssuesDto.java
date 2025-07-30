@@ -26,6 +26,5 @@ public class IssuesDto {
     private LocalDateTime issuetime;
     private String issueType;
     private String issuestatus;
-    private List<Images> issueimage;
 
 }

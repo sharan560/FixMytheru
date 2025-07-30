@@ -15,4 +15,11 @@ public interface IssuesRepo extends JpaRepository<Issues, Integer> {
 
 
     List<Issues> findByRegisterDetails_Id(int id);
+
+    List<Issues> findByMaintainenceDetails_Id(int maintainenceDetailsId);
+
+    List<Issues> findByIssueStatus(String IssueStatus); // match exactly: I, S uppercase
+// change field name OR use this exact case
+
+
 }

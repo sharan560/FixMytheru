@@ -18,8 +18,17 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(registerDetails.getRole()));
+
+        String role = registerDetails.getRole();
+        if (!role.startsWith("ROLE_")) {
+            role = "ROLE_" + role;
+        }
+        System.out.println("User role: " + role);
+        System.out.println("GrantedAuthority: " + new SimpleGrantedAuthority(role));
+
+        return List.of(new SimpleGrantedAuthority(role));
     }
+
 
     @Override
     public String getPassword() {

@@ -19,7 +19,8 @@ public class Images {
     @Lob
     private byte[] image;
 
-    @ManyToOne
+
+    @ManyToOne(optional = false)
     @JoinColumn(name="issue_id")
     @ToString.Exclude
     private Issues issues;
