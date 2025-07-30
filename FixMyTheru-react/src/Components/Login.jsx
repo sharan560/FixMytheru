@@ -23,7 +23,7 @@ const Login = () => {
   e.preventDefault();
   setError('');
   try {
-    const response = await axios.post("http://localhost:5731/api/auth/login", formData);
+    const response = await axios.post("https://fixmytheru.onrender.com/api/auth/login", formData);
     const { token, id, role } = response.data;
 
     localStorage.setItem('role', role);
