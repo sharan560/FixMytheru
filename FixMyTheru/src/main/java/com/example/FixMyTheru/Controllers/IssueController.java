@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,13 +22,18 @@ public class IssueController {
 
 /// Add an issue in the table
 
-//@PreAuthorize("hasAnyRole('ADMIN','USER')")
-    @PostMapping("/addIssue")
-    public String addIssuse(@RequestBody Issues issues){
-        if(issuseService.addissue(issues)) return "Add issue successfully";
-        return "Add issue failed";
+        @PostMapping("/addIssue")
+        public ResponseEntity<String> addIssue(
+                @RequestPart("issue") Issues issues,
+                @RequestPart("images") MultipartFile[] images
+        ) {
+            System.out.println("Issue JSON: " + issues);
+            System.out.println("Date: " + issues.getIssueDate());
+            System.out.println("Time: " + issues.getIssueTime());
 
-    }
+            boolean success = issuseService.addissueWithImages(issues,images);
+            return ResponseEntity.ok(success ? "Add issue successfully" : "Add issue failed");
+        }
 
 /// Get all Issues
 ///
@@ -44,6 +50,11 @@ public class IssueController {
     public List<IssuesDto> fetchIssuesByUserid(@PathVariable int id){
         return issuseService.fetchIssuesByUserid(id);
 
+    }
+
+    @GetMapping("/get/{id}")
+    public IssuesDto getIssueById(@PathVariable int id){
+        return issuseService.getByid(id);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")

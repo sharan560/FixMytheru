@@ -39,7 +39,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             Claims claims = jwtTokenProvider.getClaimsFromToken(token);
             String username = claims.getSubject();
 
-            // Extract roles from the claims
             List<String> roles = claims.get("roles", List.class);
 
             List<GrantedAuthority> authorities = roles.stream()

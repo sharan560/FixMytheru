@@ -9,7 +9,9 @@ import lombok.ToString;
 
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -31,11 +33,13 @@ public class Issues {
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDateTime IssueDate;
+    private LocalDate issueDate;
+
+
 
     @Column(nullable = false)
     @JsonFormat(shape=JsonFormat.Shape.STRING ,pattern = "HH:mm:ss")
-    private LocalDateTime IssueTime;
+    private LocalTime issueTime;
 
     @Column(nullable = false)
     private String IssueLocation;
@@ -64,5 +68,8 @@ public class Issues {
     @ToString.Exclude
     @JoinColumn(name="maintainence_id")
     private RegisterDetails maintainenceDetails;
+
+    @Transient
+    private int userId;
 
 }
