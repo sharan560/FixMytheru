@@ -38,7 +38,6 @@ const Issue = () => {
           )}
         </div>
 
-        {/* Right: Issue details */}
         <div className="col-md-6">
           <h2 style={{ color: '#1565C0' }}>{issue.issueName}</h2>
           <p style={{ color: '#333' }}>{issue.issueDescription}</p>

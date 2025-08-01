@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -21,9 +23,9 @@ public class Workupdate {
 
     private String workDescription;
 
-    private LocalDateTime workDate;
+    private LocalDate workDate;
 
-    private LocalDateTime workTime;
+    private LocalTime workTime;
 
     @OneToOne
     @JoinColumn(name="issue_id")
@@ -37,6 +39,12 @@ public class Workupdate {
     @JoinColumn(name="maintenece_id")
     @ToString.Exclude
     private RegisterDetails maintaience;
+
+    @Transient
+    private int issueid;
+
+    @Transient
+    private int userid;
 
 
 

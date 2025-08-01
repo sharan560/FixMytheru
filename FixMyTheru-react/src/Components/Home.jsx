@@ -41,7 +41,7 @@ const Home = () => {
   });
 
   const handleCardClick = (issue) => {
-    navigate(`/issue/${issue.id}`, { state: { issue } });  // Navigate with issue data
+    navigate(`/issue/${issue.id}`, { state: { issue } });  
   };
 
   return (

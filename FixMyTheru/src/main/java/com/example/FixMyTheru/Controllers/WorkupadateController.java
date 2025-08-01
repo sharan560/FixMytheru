@@ -25,6 +25,8 @@ public class WorkupadateController {
     @PostMapping("/add")
     public String UpdateOnWork( @RequestPart("workupdate") Workupdate workupdate,
                                 @RequestPart("file") List< MultipartFile> image) throws IOException {
+
+        System.out.println(workupdate);
         if(workupdateServices.UpdateOnWork(workupdate,image)) return "success";
         return "fail";
 

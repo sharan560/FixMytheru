@@ -75,7 +75,7 @@ const AdminDashboard = () => {
     try {
       setLoadingAssign(issueId);
       console.log("hello")
-      await axios.put(`http://localhost:5731/Issue/assign/${issueId}/${employeeId}`, {}, {
+      await axios.put(`https://fixmytheru.onrender.com/Issue/assign/${issueId}/${employeeId}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Employee assigned successfully.");

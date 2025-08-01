@@ -28,7 +28,8 @@ const Employee = () => {
   }, [empId]);
 
   const handleUpdate = (issueid) => {
-    // localStorage.setItem(issueid);
+    localStorage.setItem("issueid", issueid);
+
    navigate(`/update`);
   };
 
@@ -59,8 +60,14 @@ const Employee = () => {
                           style={{
                             padding: '5px 10px',
                             borderRadius: '10px',
-                            backgroundColor: issue.issuestatus === 'resolved' ? '#d4edda' : '#fff3cd',
-                            color: issue.issuestatus === 'resolved' ? '#155724' : '#856404',
+                           backgroundColor:
+                              issue.issuestatus === 'COMPLETED' ? '#d4edda'
+                              : issue.issuestatus === 'NOT_STARTED' ? '#f8d7da'
+                              : '#fff3cd',
+                            color:
+                              issue.issuestatus === 'COMPLETED' ? '#155724'
+                              : issue.issuestatus === 'NOT_STARTED' ? '#721c24'
+                              : '#856404',
                             fontWeight: '500'
                           }}
                         >

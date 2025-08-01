@@ -30,7 +30,7 @@ public class IssuseService {
 
     public boolean addissueWithImages(Issues issues, MultipartFile[] images) {
         try {
-            // Default status
+
             if (issues.getIssueStatus() == null) {
                 issues.setIssueStatus(String.valueOf(IssueStatus.NOT_STARTED));
             }
@@ -38,7 +38,7 @@ public class IssuseService {
 
             RegisterDetails reg1= registerDetailsRepo.findById(issues.getUserId()).get();
             issues.setRegisterDetails(reg1);
-            // Save the issue first
+
             Issues savedIssue = issuesRepo.save(issues);
 
             List<Images> imageEntities = new ArrayList<>();
@@ -87,8 +87,8 @@ public class IssuseService {
                         issue.getIssueid(),
                         issue.getIssueName(),
                         issue.getIssueDescription(),
-                        issue.getIssueDate(),          // Correct: LocalDate
-                        issue.getIssueTime(),          // Correct: LocalTime
+                        issue.getIssueDate(),
+                        issue.getIssueTime(),
                         issue.getIssueType(),
                         issue.getIssueStatus()
                 ))
@@ -151,5 +151,10 @@ public class IssuseService {
                 issue.getIssueTime(),
                 issue.getIssueType(),
                 issue.getIssueStatus());
+    }
+
+    public void deleteissue(int issueid) {
+
+        issuesRepo.deleteById(issueid);
     }
 }

@@ -5,7 +5,7 @@ const Navbar = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [role, setRole] = useState(localStorage.getItem('role'));
 
-  // Update navbar on login/logout
+  
   useEffect(() => {
     const handleStorageChange = () => {
       setToken(localStorage.getItem('token'));
@@ -25,7 +25,7 @@ const Navbar = () => {
     setToken(null);
     setRole(null);
     window.dispatchEvent(new Event('storageChange'));
-    window.location.href = '/'; // optional redirect
+    window.location.href = '/'; 
   };
 
     return (
