@@ -1,41 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [issues, setIssues] = useState([]);
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get("http://localhost:5731/Issue/getall", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
+    axios.get("https://fixmytheru.onrender.com/Issue/getall", {
+      headers: { Authorization: `Bearer ${token}` }
     })
-      .then((response) => {
-        setIssues(response.data);
-      })
-      .catch((err) => {
-        setError('Failed to fetch issues');
-        console.error(err);
-      });
+    .then((response) => setIssues(response.data))
+    .catch((err) => {
+      setError('Failed to fetch issues');
+      console.error(err);
+    });
   }, [token]);
 
   useEffect(() => {
-    axios.get("http://localhost:5731/images/getall", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
+    axios.get("https://fixmytheru.onrender.com/images/getall", {
+      headers: { Authorization: `Bearer ${token}` }
     })
-      .then((response) => {
-        setImages(response.data);
-      })
-      .catch((err) => {
-        setError('Failed to fetch images');
-        console.error(err);
-      });
+    .then((response) => setImages(response.data))
+    .catch((err) => {
+      setError('Failed to fetch images');
+      console.error(err);
+    });
   }, [token]);
 
   const mergedIssues = issues.map((issue) => {
@@ -45,6 +39,10 @@ const Home = () => {
       issueimage: imageGroup ? imageGroup.images : [],
     };
   });
+
+  const handleCardClick = (issue) => {
+    navigate(`/issue/${issue.id}`, { state: { issue } });  // Navigate with issue data
+  };
 
   return (
     <div style={{ backgroundColor: '#F9F9F9', minHeight: '100vh', padding: '2rem' }}>
@@ -61,7 +59,11 @@ const Home = () => {
           <div className="row">
             {mergedIssues.map((issue) => (
               <div key={issue.id} className="col-md-4 mb-4">
-                <div className="card h-100 shadow" style={{ borderRadius: '1rem', border: 'none' }}>
+                <div
+                  className="card h-100 shadow"
+                  style={{ borderRadius: '1rem', border: 'none', cursor: 'pointer' }}
+                  onClick={() => handleCardClick(issue)}
+                >
                   {issue.issueimage.length > 0 && (
                     <img
                       src={`data:image/jpeg;base64,${issue.issueimage[0]}`}
@@ -89,17 +91,13 @@ const Home = () => {
                             padding: '5px 10px',
                             borderRadius: '10px',
                             backgroundColor:
-                              issue.issuestatus === 'COMPLETED'
-                                ? '#d4edda'
-                                : issue.issuestatus === 'NOT_STARTED'
-                                ? '#f8d7da'
-                                : '#fff3cd',
+                              issue.issuestatus === 'COMPLETED' ? '#d4edda'
+                              : issue.issuestatus === 'NOT_STARTED' ? '#f8d7da'
+                              : '#fff3cd',
                             color:
-                              issue.issuestatus === 'COMPLETED'
-                                ? '#155724'
-                                : issue.issuestatus === 'NOT_STARTED'
-                                ? '#721c24'
-                                : '#856404',
+                              issue.issuestatus === 'COMPLETED' ? '#155724'
+                              : issue.issuestatus === 'NOT_STARTED' ? '#721c24'
+                              : '#856404',
                             fontWeight: '500',
                           }}
                         >

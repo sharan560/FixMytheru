@@ -28,7 +28,7 @@ const Register = () => {
     setError('');
     setSuccess('');
     try {
-      const response = await axios.post("http://localhost:5731/api/auth/register", formData);
+      const response = await axios.post("https://fixmytheru.onrender.com/api/auth/register", formData);
       navigate('/');
       setSuccess("Registration Successful");
     } catch (error) {

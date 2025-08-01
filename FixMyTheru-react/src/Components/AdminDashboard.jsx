@@ -19,7 +19,7 @@ const AdminDashboard = () => {
 
   const fetchIssues = async () => {
     try {
-      const res = await axios.get("http://localhost:5731/Issue/getIssue/status", {
+      const res = await axios.get("https://fixmytheru.onrender.com/Issue/getIssue/status", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setIssues(res.data);
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 
   const fetchImages = async () => {
     try {
-      const res = await axios.get("http://localhost:5731/images/getall", {
+      const res = await axios.get("https://fixmytheru.onrender.com/images/getall", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setImages(res.data);
@@ -43,7 +43,7 @@ const AdminDashboard = () => {
 
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get("http://localhost:5731/users/get/MAINTANENCE", {
+      const res = await axios.get("https://fixmytheru.onrender.com/users/get/MAINTANENCE", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEmployees(res.data);

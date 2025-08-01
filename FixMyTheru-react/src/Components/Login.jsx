@@ -26,9 +26,9 @@ const Login = () => {
     const response = await axios.post("https://fixmytheru.onrender.com/api/auth/login", formData);
     const { token, id, role } = response.data;
 
-    localStorage.setItem('role', role);
-    localStorage.setItem('token', token);
-    localStorage.setItem('id', id);
+      localStorage.setItem('role', role);
+      localStorage.setItem('token', token);
+      localStorage.setItem('id', id);
 
     setSuccess("Login Successful");
     console.log(role);

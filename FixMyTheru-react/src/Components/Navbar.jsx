@@ -60,7 +60,7 @@ const Navbar = () => {
                 {role === 'USER' && (
                   <>
                   <a className="btn btn-outline-light" href="/home">Home</a>
-                  <a className="btn btn-outline-light" href="/">FileComplaint</a>
+                  <a className="btn btn-outline-light" href="/raiseissue">FileComplaint</a>
                   </>
 
                 )}

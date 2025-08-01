@@ -9,11 +9,8 @@ import Employee from './Components/Employee';
 import WorkUpdateForm from './Components/WorkUpdateform';
 import AdminDashboard from './Components/AdminDashboard';
 import EmployeeForm from './Components/EmployeeForm';
-
-
-
-
-
+import RaiseIssue from './Components/RaiseIssue';
+import Issue from './Components/Issue';
 
 const App = () => {
   return (
@@ -28,6 +25,8 @@ const App = () => {
         <Route path="/update" element={<WorkUpdateForm/>}/>
         <Route path="/admin" element={<AdminDashboard/>}/>
         <Route path="/empform" element={<EmployeeForm/>}/>
+        <Route path="/raiseissue" element={<RaiseIssue/>} />
+        <Route path="/issue/:id" element={<Issue/>} />
         <Route path="*" element={<h2 className="text-center mt-5">404 - Page Not Found</h2>} />
       </Routes>
     </BrowserRouter>

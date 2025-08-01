@@ -17,7 +17,7 @@ const WorkUpdateForm = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (issueId) {
-      axios.get(`http://localhost:5731/issues/${issueId}`, {
+      axios.get(`https://fixmytheru.onrender.com/issues/${issueId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
@@ -58,7 +58,7 @@ const WorkUpdateForm = () => {
       form.append("file", formData.images[i]);
     }
 
-    axios.post("http://localhost:5731/update/add", form, {
+    axios.post("https://fixmytheru.onrender.com/update/add", form, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",

@@ -6,8 +6,9 @@ const EmployeeForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    username: '',
+    profileimage: null,
     password: '',
+    username: '',
     role: '',
     address: ''
   });
@@ -23,11 +24,9 @@ const EmployeeForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem('token');
-
     try {
       const response = await axios.post(
-        'http://localhost:5731/api/auth/register',
+        'https://fixmytheru.onrender.com/api/auth/register',
         formData
       );
 
@@ -75,9 +74,9 @@ const EmployeeForm = () => {
             <label className="form-label">Role</label>
             <select className="form-select" name="role" value={formData.role} onChange={handleChange} required>
               <option value="">Select Role</option>
-              <option value="USER">User</option>
-              <option value="MAINTANENCE">Employee</option>
-              <option value="ADMIN">Admin</option>
+              <option value="USER">ROLE-USER</option>
+              <option value="MAINTANENCE">ROLE-MAINTANENCE</option>
+              <option value="ADMIN">ROLE-ADMIN</option>
             </select>
           </div>
           <div className="col-md-6">

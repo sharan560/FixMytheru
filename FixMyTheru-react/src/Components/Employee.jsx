@@ -18,7 +18,7 @@ const Employee = () => {
   useEffect(() => {
     if (!empId) return;
     axios
-      .get(`http://localhost:5731/Issue/getIssue/employee/${empId}`, headers)
+      .get(`https://fixmytheru.onrender.com/Issue/getIssue/employee/${empId}`, headers)
       .then((res) => {
         setIssues(res.data);
       })
