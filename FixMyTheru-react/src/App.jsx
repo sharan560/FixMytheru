@@ -42,7 +42,7 @@ const App = () => {
         <Route
           path="/employee"
           element={
-            <ProtectedRoute allowedRoles={["MAINTENANCE"]}>
+            <ProtectedRoute allowedRoles={["MAINTANENCE"]}>
               <Employee />
             </ProtectedRoute>
           }
@@ -51,7 +51,7 @@ const App = () => {
         <Route
           path="/update"
           element={
-            <ProtectedRoute allowedRoles={["MAINTENANCE"]}>
+            <ProtectedRoute allowedRoles={["MAINTANENCE"]}>
               <WorkUpdateForm />
             </ProtectedRoute>
           }
@@ -87,7 +87,7 @@ const App = () => {
         <Route
           path="/issue/:id"
           element={
-            <ProtectedRoute allowedRoles={["ADMIN", "MAINTENANCE","USER"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "MAINTANENCE","USER"]}>
               <Issue />
             </ProtectedRoute>
           }
