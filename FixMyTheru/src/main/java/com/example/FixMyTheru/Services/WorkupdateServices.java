@@ -46,8 +46,8 @@ public class WorkupdateServices {
             workupdate.setMaintaience(reg1);
             Issues issue =issuesRepo.findById(workupdate.getIssueid()).orElseThrow();
             issue.setIssueStatus(IssueStatus.COMPLETED.toString());
-            issuesRepo.save(issue);
             workupdate.setIssues(issue);
+            emailService.sendEmail(issue,reg1);
             List<Images>images=new ArrayList<>();
             for (MultipartFile file : image) {
 
@@ -60,7 +60,8 @@ public class WorkupdateServices {
             workupdate.setImages(images);
             workupdateRepo.save(workupdate);
             imagesRepo.saveAll(images);
-            emailService.sendEmail(issue,reg1);
+            issuesRepo.save(issue);
+
 //            issuseService.deleteissue(workupdate.getIssueid());
            return true;
         }

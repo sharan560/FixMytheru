@@ -119,8 +119,8 @@ public class IssuseService {
                         issue.getIssueid(),
                         issue.getIssueName(),
                         issue.getIssueDescription(),
-                        issue.getIssueDate(),          // Correct: LocalDate
-                        issue.getIssueTime(),          // Correct: LocalTime
+                        issue.getIssueDate(),
+                        issue.getIssueTime(),
                         issue.getIssueType(),
                         issue.getIssueStatus()
                 ))
@@ -134,8 +134,8 @@ public class IssuseService {
                         issue.getIssueid(),
                         issue.getIssueName(),
                         issue.getIssueDescription(),
-                        issue.getIssueDate(),          // Correct: LocalDate
-                        issue.getIssueTime(),         // Correct: LocalTime
+                        issue.getIssueDate(),
+                        issue.getIssueTime(),
                         issue.getIssueType(),
                         issue.getIssueStatus()
                 ))

@@ -54,7 +54,7 @@ const RaiseIssue = () => {
         }
       });
       alert("Issue submitted successfully.");
-      // optionally reset form here
+     
     } catch (error) {
       console.error(error);
       alert("Failed to raise issue.");
