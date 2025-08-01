@@ -44,7 +44,9 @@ const Employee = () => {
           <p style={{ color: '#777', textAlign: 'center' }}>No issues assigned.</p>
         ) : (
           <div className="row">
-            {issues.map((issue) => (
+            {issues
+            .filter((issue) => issue.issuestatus === 'IN_PROGRESS')
+              .map((issue) => (
               <div key={issue.id} className="col-md-4 mb-4">
                 <div className="card h-100 shadow" style={{ borderRadius: '1rem', border: 'none' }}>
                   <div className="card-body d-flex flex-column justify-content-between">
