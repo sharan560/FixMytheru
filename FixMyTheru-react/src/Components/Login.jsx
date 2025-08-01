@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import logo from '../assets/logo.jpg';
 const Login = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -49,7 +49,7 @@ const Login = () => {
       <div className="row w-100 m-0 vh-100">
         <div className="col-md-6 d-none d-md-block p-0 ">
           <img
-            src="/src/assets/logo.png"
+            src={logo}
             alt="Logo"
             className="img-fluid w-100"
             style={{ height: '100vh', objectFit: 'cover' }}

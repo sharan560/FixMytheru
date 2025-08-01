@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+import logo from '../assets/logo.jpg';
 const Navbar = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [role, setRole] = useState(localStorage.getItem('role'));
@@ -32,7 +32,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#1565C0' }}>
         <div className="container-fluid d-flex justify-content-between align-items-center px-4">
           <a className="navbar-brand d-flex align-items-center text-white" href="/" style={{ fontWeight: 'bold' }}>
-            <img src="/src/assets/logo.png" alt="Logo of FixMyTheru" width="40" height="40" className="me-2" />
+            <img src={logo} alt="Logo of FixMyTheru" width="40" height="40" className="me-2" />
           </a>
 
           <div className="d-flex gap-3">
