@@ -20,6 +20,6 @@ public class WorkupdateDto {
     private LocalDate workDate;
 //    private List<String> images ;
     private List<Images> images;
-    private  String maintence;
+    private List<String> maintence;
 
 }

@@ -42,12 +42,12 @@ public class WorkupdateServices {
 
     public boolean UpdateOnWork(Workupdate workupdate, List<MultipartFile> image) throws IOException {
 
-            RegisterDetails reg1= registerDetailsRepo.findById(workupdate.getUserid()) .orElseThrow();
+            List<RegisterDetails> reg1= registerDetailsRepo.findById(workupdate.getUserid()).stream().toList();
             workupdate.setMaintaience(reg1);
             Issues issue =issuesRepo.findById(workupdate.getIssueid()).orElseThrow();
             issue.setIssueStatus(IssueStatus.COMPLETED.toString());
             workupdate.setIssues(issue);
-            emailService.sendEmail(issue,reg1);
+            emailService.sendEmail(issue);
             List<Images>images=new ArrayList<>();
             for (MultipartFile file : image) {
 
@@ -61,21 +61,23 @@ public class WorkupdateServices {
             workupdateRepo.save(workupdate);
             imagesRepo.saveAll(images);
             issuesRepo.save(issue);
-
-//            issuseService.deleteissue(workupdate.getIssueid());
            return true;
         }
 
     public List<WorkupdateDto> getallWorkupdate() {
-        List<Workupdate>workupdates=workupdateRepo.findAllByOrderByWorkDateDescWorkTimeDesc();
+        List<Workupdate> workupdates = workupdateRepo.findAllByOrderByWorkDateDescWorkTimeDesc();
+
         return workupdates.stream()
                 .map(workupdate -> new WorkupdateDto(
                         workupdate.getIssues().getIssueName(),
                         workupdate.getWorkDescription(),
                         workupdate.getWorkDate(),
                         workupdate.getImages(),
-                        workupdate.getMaintaience().getUsername()
-                        )).collect(Collectors.toList());
+                        workupdate.getMaintaience().stream()
+                                .map(RegisterDetails::getUsername)
+                                .collect(Collectors.toList())
+                ))
+                .collect(Collectors.toList());
     }
 
     @Transactional

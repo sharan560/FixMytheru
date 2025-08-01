@@ -56,7 +56,9 @@ public class RegisterDetails {
     @ToString.Exclude
     private List<Issues> maintaience;
 
-    @OneToOne(mappedBy = "maintaience")
+    @ManyToMany(mappedBy = "maintaience")
     @ToString.Exclude
-    private Workupdate maintainence;
+    private List<Workupdate> updates;
+
+
 }

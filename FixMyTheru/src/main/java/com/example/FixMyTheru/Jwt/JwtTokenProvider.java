@@ -22,7 +22,7 @@ public class JwtTokenProvider {
     @Value("${app.jwt-expiration-milliseconds}")
     private long jwtExpirationData;
 
-    // Generates a JWT token with username and roles
+
     public String generateToken(Authentication authentication) {
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
 
@@ -47,7 +47,7 @@ public class JwtTokenProvider {
     }
 
 
-    // Extract username from the token
+
     public String getUsernameFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSecretKey())
@@ -65,12 +65,12 @@ public class JwtTokenProvider {
                     .parseClaimsJws(token);
             return true;
         } catch (JwtException ex) {
-            ex.printStackTrace(); // You can also log this
+            ex.printStackTrace();
         }
         return false;
     }
 
-    // Generates the secret key from Base64 string
+
     private Key getSecretKey() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
