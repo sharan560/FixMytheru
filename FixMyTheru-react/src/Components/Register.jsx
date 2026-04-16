@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 
@@ -12,6 +13,7 @@ const Register = () => {
     address: ''
   });
 
+  const navigate = useNavigate();
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -32,7 +34,7 @@ const Register = () => {
       navigate('/');
       setSuccess("Registration Successful");
     } catch (error) {
-      setError("Registration failed");
+      setError(error.response?.data || "Registration failed");
     }
   };
 

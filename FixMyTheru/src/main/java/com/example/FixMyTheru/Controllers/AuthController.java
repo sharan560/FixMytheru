@@ -1,11 +1,10 @@
 package com.example.FixMyTheru.Controllers;
 
-
 import com.example.FixMyTheru.Dto.LoginDto;
 import com.example.FixMyTheru.Models.RegisterDetails;
 import com.example.FixMyTheru.Services.AuthServices;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -15,29 +14,38 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class AuthController {
 
-
     @Autowired
     private AuthServices authServices;
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody RegisterDetails userDetails) {
+    public ResponseEntity<?> registerUser(@RequestBody RegisterDetails userDetails) {
+        try {
+            boolean isRegistered = authServices.registerUser(userDetails);
 
-        if(authServices.registerUser(userDetails)) return  "Register Success";
-        else return "Register Failed";
+            if (isRegistered) {
+                return ResponseEntity.ok("Register Success");
+            } else {
+                return ResponseEntity.badRequest().body("Register Failed");
+            }
 
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Email already registered");
+        }
     }
 
     @PostMapping("/login")
-    public LoginDto login(@RequestBody RegisterDetails loginDetails) {
-        LoginDto ld= authServices.login(loginDetails) ;
-        System.out.println(ld);
-        return ld;
-    }
-    @GetMapping("/debug/roles")
-    public String debugRoles() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("Authorities: " + auth.getAuthorities());
-        return  auth.getAuthorities().toString();
+    public ResponseEntity<?> login(@RequestBody RegisterDetails loginDetails) {
+        try {
+            LoginDto ld = authServices.login(loginDetails);
+            return ResponseEntity.ok(ld);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Invalid credentials");
+        }
     }
 
+    @GetMapping("/debug/roles")
+    public ResponseEntity<?> debugRoles() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok(auth.getAuthorities().toString());
+    }
 }
