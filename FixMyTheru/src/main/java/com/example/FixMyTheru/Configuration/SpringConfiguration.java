@@ -42,7 +42,7 @@ public class SpringConfiguration {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(myUserDetailsService);
+            provider.setUserDetailsService(myUserDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }

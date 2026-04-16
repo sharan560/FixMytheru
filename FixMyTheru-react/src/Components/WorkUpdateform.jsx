@@ -45,7 +45,7 @@ const WorkUpdateForm = () => {
     }
 
     try {
-      const response = await axios.post('https://fixmytheru.onrender.com/update/add', data, {
+      const response = await axios.post('http://localhost:5731/update/add', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

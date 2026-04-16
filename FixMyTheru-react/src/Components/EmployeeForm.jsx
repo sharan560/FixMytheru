@@ -26,7 +26,7 @@ const EmployeeForm = () => {
 
     try {
       const response = await axios.post(
-        'https://fixmytheru.onrender.com/api/auth/register',
+        'http://localhost:5731/api/auth/register',
         formData
       );
 
