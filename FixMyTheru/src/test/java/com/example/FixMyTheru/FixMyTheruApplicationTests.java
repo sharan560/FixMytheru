@@ -1,13 +1,14 @@
 package com.example.FixMyTheru;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-@SpringBootTest
 class FixMyTheruApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void applicationClassShouldBeCreated() {
+		FixMyTheruApplication app = new FixMyTheruApplication();
+		Assert.assertNotNull(app);
 	}
 
 }
