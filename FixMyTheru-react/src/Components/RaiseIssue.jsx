@@ -47,7 +47,7 @@ const RaiseIssue = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5731/Issue/addIssue', data, {
+      const response = await axios.post('https://fixmytheru.onrender.com/Issue/addIssue', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

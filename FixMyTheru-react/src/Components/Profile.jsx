@@ -14,13 +14,13 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:5731/users/${userId}`, headers)
+    axios.get(`https://fixmytheru.onrender.com/users/${userId}`, headers)
       .then(res => {
         setUser(res.data);
       })
       .catch(err => console.error("User fetch error:", err));
 
-    axios.get(`http://localhost:5731/Issue/getIssue/${userId}`, headers)
+    axios.get(`https://fixmytheru.onrender.com/Issue/getIssue/${userId}`, headers)
       .then(res => {
         setIssues(res.data);
       })

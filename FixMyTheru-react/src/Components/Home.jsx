@@ -11,7 +11,7 @@ const Home = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get("http://localhost:5731/Issue/getall", {
+    axios.get("https://fixmytheru.onrender.com/Issue/getall", {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => setIssues(response.data))
@@ -22,7 +22,7 @@ const Home = () => {
   }, [token]);
 
   useEffect(() => {
-    axios.get("http://localhost:5731/images/getall", {
+    axios.get("https://fixmytheru.onrender.com/images/getall", {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => setImages(response.data))
