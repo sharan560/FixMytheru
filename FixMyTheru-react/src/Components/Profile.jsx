@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 
 const Profile = () => {
   const userId = Number(localStorage.getItem("id"));
@@ -14,13 +15,13 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    axios.get(`https://fixmytheru.onrender.com/users/${userId}`, headers)
+    axios.get(`${BASE_URL}/users/${userId}`, headers)
       .then(res => {
         setUser(res.data);
       })
       .catch(err => console.error("User fetch error:", err));
 
-    axios.get(`https://fixmytheru.onrender.com/Issue/getIssue/${userId}`, headers)
+    axios.get(`${BASE_URL}/Issue/getIssue/${userId}`, headers)
       .then(res => {
         setIssues(res.data);
       })

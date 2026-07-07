@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RaiseIssue = () => {
@@ -47,7 +48,7 @@ const RaiseIssue = () => {
     }
 
     try {
-      const response = await axios.post('https://fixmytheru.onrender.com/Issue/addIssue', data, {
+      const response = await axios.post(`${BASE_URL}/Issue/addIssue`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

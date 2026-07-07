@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EmployeeForm = () => {
@@ -26,7 +27,7 @@ const EmployeeForm = () => {
 
     try {
       const response = await axios.post(
-        'https://fixmytheru.onrender.com/api/auth/register',
+        `${BASE_URL}/api/auth/register`,
         formData
       );
 

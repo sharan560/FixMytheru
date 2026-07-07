@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 
 const AdminDashboard = () => {
   const [issues, setIssues] = useState([]);
@@ -19,7 +20,7 @@ const AdminDashboard = () => {
 
   const fetchIssues = async () => {
     try {
-      const res = await axios.get("https://fixmytheru.onrender.com/Issue/getIssue/status", {
+      const res = await axios.get(`${BASE_URL}/Issue/getIssue/status`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setIssues(res.data);
@@ -31,7 +32,7 @@ const AdminDashboard = () => {
 
   const fetchImages = async () => {
     try {
-      const res = await axios.get("https://fixmytheru.onrender.com/images/getall", {
+      const res = await axios.get(`${BASE_URL}/images/getall`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setImages(res.data);
@@ -43,7 +44,7 @@ const AdminDashboard = () => {
 
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get("https://fixmytheru.onrender.com/users/get/MAINTANENCE", {
+      const res = await axios.get(`${BASE_URL}/users/get/MAINTANENCE`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEmployees(res.data);
@@ -96,7 +97,7 @@ const AdminDashboard = () => {
     try {
       setLoadingAssign(issueId);
       console.log("hello")
-      await axios.put(`https://fixmytheru.onrender.com/Issue/assign/${issueId}/${employeeId}`, {}, {
+      await axios.put(`${BASE_URL}/Issue/assign/${issueId}/${employeeId}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Employee assigned successfully.");

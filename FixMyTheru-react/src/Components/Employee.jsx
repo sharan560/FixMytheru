@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -18,7 +19,7 @@ const Employee = () => {
   useEffect(() => {
     if (!empId) return;
     axios
-      .get(`https://fixmytheru.onrender.com/Issue/getIssue/employee/${empId}`, headers)
+      .get(`${BASE_URL}/Issue/getIssue/employee/${empId}`, headers)
       .then((res) => {
         setIssues(res.data);
       })

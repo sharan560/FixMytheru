@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get("https://fixmytheru.onrender.com/Issue/getall", {
+    axios.get(`${BASE_URL}/Issue/getall`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => setIssues(response.data))
@@ -22,7 +23,7 @@ const Home = () => {
   }, [token]);
 
   useEffect(() => {
-    axios.get("https://fixmytheru.onrender.com/images/getall", {
+    axios.get(`${BASE_URL}/images/getall`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => setImages(response.data))

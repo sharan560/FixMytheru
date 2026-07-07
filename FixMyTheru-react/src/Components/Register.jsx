@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
@@ -30,7 +31,7 @@ const Register = () => {
     setError('');
     setSuccess('');
     try {
-      const response = await axios.post("https://fixmytheru.onrender.com/api/auth/register", formData);
+      const response = await axios.post(`${BASE_URL}/api/auth/register`, formData);
       navigate('/');
       setSuccess("Registration Successful");
     } catch (error) {

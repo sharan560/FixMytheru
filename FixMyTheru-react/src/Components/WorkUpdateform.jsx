@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 
 const WorkUpdateForm = () => {
   const token = localStorage.getItem('token');
@@ -45,7 +46,7 @@ const WorkUpdateForm = () => {
     }
 
     try {
-      const response = await axios.post('https://fixmytheru.onrender.com/update/add', data, {
+      const response = await axios.post(`${BASE_URL}/update/add`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

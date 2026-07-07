@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 const Login = () => {
@@ -23,7 +24,7 @@ const Login = () => {
   e.preventDefault();
   setError('');
   try {
-    const response = await axios.post("https://fixmytheru.onrender.com/api/auth/login", formData);
+    const response = await axios.post(`${BASE_URL}/api/auth/login`, formData);
     const { token, id, role } = response.data;
 
       localStorage.setItem('role', role);
