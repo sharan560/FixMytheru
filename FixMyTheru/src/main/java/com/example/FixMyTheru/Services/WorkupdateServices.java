@@ -48,11 +48,11 @@ public class WorkupdateServices {
             issue.setIssueStatus(IssueStatus.COMPLETED.toString());
             workupdate.setIssues(issue);
             
-            try {
-                emailService.sendEmail(issue);
-            } catch (Exception e) {
-                System.err.println("Error sending notification email: " + e.getMessage());
-            }
+//            try {
+//                emailService.sendEmail(issue);
+//            } catch (Exception e) {
+//                System.err.println("Error sending notification email: " + e.getMessage());
+//            }
 
             List<Images>images=new ArrayList<>();
             if (image != null) {
