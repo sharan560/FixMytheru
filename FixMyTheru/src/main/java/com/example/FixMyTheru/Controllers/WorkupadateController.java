@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/update")
-@CrossOrigin(origins = "*")
 public class WorkupadateController {
 
     @Autowired
