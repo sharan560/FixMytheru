@@ -24,7 +24,7 @@ public class WorkupadateController {
     @PreAuthorize("hasAnyRole('ADMIN','MAINTANENCE')")
     @PostMapping("/add")
     public String UpdateOnWork( @RequestPart("workupdate") Workupdate workupdate,
-                                @RequestPart("file") List< MultipartFile> image) throws IOException {
+                                @RequestPart(value = "file", required = false) List<MultipartFile> image) throws IOException {
 
         System.out.println(workupdate);
         if(workupdateServices.UpdateOnWork(workupdate,image)) return "success";

@@ -47,15 +47,22 @@ public class WorkupdateServices {
             Issues issue =issuesRepo.findById(workupdate.getIssueid()).orElseThrow();
             issue.setIssueStatus(IssueStatus.COMPLETED.toString());
             workupdate.setIssues(issue);
-            emailService.sendEmail(issue);
-            List<Images>images=new ArrayList<>();
-            for (MultipartFile file : image) {
+            
+            try {
+                emailService.sendEmail(issue);
+            } catch (Exception e) {
+                System.err.println("Error sending notification email: " + e.getMessage());
+            }
 
-                Images img=new Images();
-                img.setUpdates(workupdate);
-                img.setIssues(workupdate.getIssues());
-                img.setImage(file.getBytes());
-                images.add(img);
+            List<Images>images=new ArrayList<>();
+            if (image != null) {
+                for (MultipartFile file : image) {
+                    Images img=new Images();
+                    img.setUpdates(workupdate);
+                    img.setIssues(workupdate.getIssues());
+                    img.setImage(file.getBytes());
+                    images.add(img);
+                }
             }
             workupdate.setImages(images);
             workupdateRepo.save(workupdate);

@@ -75,7 +75,8 @@ public class IssuseService {
                         issue.getIssueDate(),          // Correct: LocalDate
                         issue.getIssueTime(),          // Correct: LocalTime
                         issue.getIssueType(),
-                        issue.getIssueStatus()
+                        issue.getIssueStatus(),
+                        issue.getIssueLocation()
                 ))
                 .collect(Collectors.toList());
     }
@@ -90,7 +91,8 @@ public class IssuseService {
                         issue.getIssueDate(),
                         issue.getIssueTime(),
                         issue.getIssueType(),
-                        issue.getIssueStatus()
+                        issue.getIssueStatus(),
+                        issue.getIssueLocation()
                 ))
                 .collect(Collectors.toList());
     }
@@ -122,7 +124,8 @@ public class IssuseService {
                         issue.getIssueDate(),
                         issue.getIssueTime(),
                         issue.getIssueType(),
-                        issue.getIssueStatus()
+                        issue.getIssueStatus(),
+                        issue.getIssueLocation()
                 ))
                 .collect(Collectors.toList());
     }
@@ -137,7 +140,8 @@ public class IssuseService {
                         issue.getIssueDate(),
                         issue.getIssueTime(),
                         issue.getIssueType(),
-                        issue.getIssueStatus()
+                        issue.getIssueStatus(),
+                        issue.getIssueLocation()
                 ))
                 .collect(Collectors.toList());
     }
@@ -150,7 +154,8 @@ public class IssuseService {
                 issue.getIssueDate(),
                 issue.getIssueTime(),
                 issue.getIssueType(),
-                issue.getIssueStatus());
+                issue.getIssueStatus(),
+                issue.getIssueLocation());
     }
 
     public void deleteissue(int issueid) {

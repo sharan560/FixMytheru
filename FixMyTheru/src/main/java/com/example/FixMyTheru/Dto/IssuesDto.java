@@ -28,4 +28,5 @@ public class IssuesDto {
 
     private String issueType;
     private String issuestatus;
+    private String issueLocation;
 }

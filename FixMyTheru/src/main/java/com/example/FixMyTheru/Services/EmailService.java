@@ -2,6 +2,7 @@ package com.example.FixMyTheru.Services;
 
 import com.example.FixMyTheru.Models.Issues;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,12 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Value("${spring.mail.username}")
+    private String senderEmail;
+
     public void sendEmail(Issues issues) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("your_email@gmail.com");
+        message.setFrom(senderEmail);
         message.setTo(issues.getRegisterDetails().getEmail());
         String subject = "Upadate on Issue Raised @ FixMytheru ";
         String body="Your Complaint "+issues.getIssueDescription()+ " has been Completed succesfully";

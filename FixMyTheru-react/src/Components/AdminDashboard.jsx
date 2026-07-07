@@ -65,6 +65,27 @@ const AdminDashboard = () => {
     setSelectedEmployee(prev => ({ ...prev, [issueId]: employeeId }));
   };
 
+  // Helper to format 24-hour time string (e.g., "14:30:00") to 12-hour AM/PM format
+  const formatTime12Hour = (timeStr) => {
+    if (!timeStr) return 'N/A';
+    const parts = timeStr.split(':');
+    if (parts.length < 2) return timeStr;
+    let hours = parseInt(parts[0], 10);
+    const minutes = parts[1];
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    return `${hours}:${minutes} ${ampm}`;
+  };
+
+  // Helper to map status to user-friendly label
+  const getDisplayStatus = (status) => {
+    if (!status || status === 'NOT_STARTED' || status.toUpperCase() === 'NOT_STARTED') {
+      return 'Submitted';
+    }
+    return status.replace(/_/g, ' ');
+  };
+
   const assignWork = async (issueId) => {
     const employeeId = selectedEmployee[issueId];
     if (!employeeId) {
@@ -121,9 +142,9 @@ const AdminDashboard = () => {
                     <div>
                       <h5 className="card-title" style={{ color: '#F57C00', fontWeight: 'bold' }}>{issue.issuename}</h5>
                       <p className="card-text" style={{ color: '#333' }}>{issue.issuedescription}</p>
-                      <p><strong>📅 Date:</strong> {issue.issuedate}</p>
-                      <p><strong>⏰ Time:</strong> {issue.issuetime}</p>
-                      <p><strong>📌 Type:</strong> {issue.issueType}</p>
+                      <p><strong>📅 Date:</strong> {issue.issuedate || 'N/A'}</p>
+                      <p><strong>⏰ Time:</strong> {formatTime12Hour(issue.issuetime)}</p>
+                      <p><strong>📌 Type:</strong> {issue.issueType || 'N/A'}</p>
                       <p>
                         <strong>✅ Status:</strong>{' '}
                         <span
@@ -145,7 +166,7 @@ const AdminDashboard = () => {
                             fontWeight: '500',
                           }}
                         >
-                          {issue.issuestatus}
+                          {getDisplayStatus(issue.issuestatus)}
                         </span>
                       </p>
 

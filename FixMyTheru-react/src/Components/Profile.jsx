@@ -27,6 +27,19 @@ const Profile = () => {
       .catch(err => console.error("Issue fetch error:", err));
   }, [userId]);
 
+  // Helper to format 24-hour time string (e.g., "14:30:00") to 12-hour AM/PM format
+  const formatTime12Hour = (timeStr) => {
+    if (!timeStr) return 'N/A';
+    const parts = timeStr.split(':');
+    if (parts.length < 2) return timeStr;
+    let hours = parseInt(parts[0], 10);
+    const minutes = parts[1];
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    return `${hours}:${minutes} ${ampm}`;
+  };
+
   return (
     <div className="container mt-4">
       <h2 className="mb-3">👤 User Profile</h2>
@@ -55,10 +68,10 @@ const Profile = () => {
                         : 'bg-warning'
                     }`}
                   >
-                    {issue.issuestatus}
+                    {issue.issuestatus === 'NOT_STARTED' ? 'Submitted' : issue.issuestatus}
                   </span></p>
-            <p><strong>Date:</strong> {new Date(issue.issuedate).toLocaleDateString()}</p>
-            <p><strong>Time:</strong> {new Date(issue.issuetime).toLocaleTimeString()}</p>
+            <p><strong>Date:</strong> {issue.issuedate || 'N/A'}</p>
+            <p><strong>Time:</strong> {formatTime12Hour(issue.issuetime)}</p>
           </div>
         ))
       )}
